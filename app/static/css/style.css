@@ -1,0 +1,8 @@
+body{
+    background: linear-gradient(rgb(11, 10, 73, 0.9), rgba(11, 10, 73, 0.9)), url(https://cdn.pixabay.com/photo/2014/12/21/07/49/fireworks-574739_960_720.jpg);
+    background-size: cover;
+    color: rgb(233, 224, 218);
+}
+.navbar{
+    background-color: rgb(19,21,79);
+}
