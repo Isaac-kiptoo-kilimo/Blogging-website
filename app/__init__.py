@@ -21,7 +21,7 @@ def create_app(config_name):
 
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Database URL
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Database URL
     
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
    
@@ -46,7 +46,7 @@ def create_app(config_name):
     app.register_blueprint(auth_blueprint,url_prefix='/authenticate')
 
     # setting config
-    from .requests import configure_request
-    configure_request(app)
+    # from .requests import configure_request
+    # configure_request(app)
 
     return app
