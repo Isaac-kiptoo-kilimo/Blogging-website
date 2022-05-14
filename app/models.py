@@ -3,13 +3,13 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
 from . import db
-from datetime import datetime
 
 
-class Blog:
-    def __init__(self,author,id,quote,permalink):
-        self.author=author
+
+class Quote:
+    def __init__(self,id,author,quote,permalink):
         self.id=id
+        self.author=author
         self.quote=quote
         self.permalink="http://quotes.stormconsultancy.co.uk/quotes/1" + permalink
 

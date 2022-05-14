@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add new blog</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div>
+                <form>
+                    <textarea name="editor1" id="editor1" rows="10" cols="80">
+                        This is my textarea to be replaced with CKEditor 4.
+                    </textarea>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{url_for('static',filename='ckeditor/ckeditor.js')}}"></script>
+<script>
+                       
+    CKEDITOR.replace( 'editor1' );
+</script>
+{% endblock %}

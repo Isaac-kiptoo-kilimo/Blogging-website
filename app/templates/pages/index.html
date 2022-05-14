@@ -3,9 +3,11 @@
 {% block content %}
 <div class="container">
     <div class="row">
+        {% for quote in quotes %}
         <div class="col-md-4">
-            <ul>Hello kenya</ul>
+            <li>{{quote.quote}}</li>
         </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

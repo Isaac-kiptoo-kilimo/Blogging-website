@@ -4,9 +4,9 @@ from flask_script import Manager,Server
 from flask_migrate import Migrate, MigrateCommand
 from app import login_manager
 
-# app = create_app('development')
-app = create_app('production')
-app = create_app('test')
+app = create_app('development')
+# app = create_app('production')
+# app = create_app('test')
 migrate = Migrate(app,db)
 
 manager = Manager(app)

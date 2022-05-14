@@ -13,6 +13,8 @@ flask-mail = "*"
 flask-script = "==2.0.5"
 flask-bootstrap = "*"
 psycopg2-binary = "*"
+flask-wtf = "*"
+wtforms = "==2.2.1"
 
 [dev-packages]
 

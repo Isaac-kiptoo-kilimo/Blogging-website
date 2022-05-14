@@ -2,7 +2,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from config import config_options
-
+from flask_mail import Mail
 from flask_login import LoginManager
 login_manager=LoginManager()
 login_manager.session_protection='strong'
@@ -46,7 +46,7 @@ def create_app(config_name):
     app.register_blueprint(auth_blueprint,url_prefix='/authenticate')
 
     # setting config
-    # from .requests import configure_request
-    # configure_request(app)
+    from .requests import configure_request
+    configure_request(app)
 
     return app
