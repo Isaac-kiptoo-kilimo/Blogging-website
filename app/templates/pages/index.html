@@ -3,6 +3,19 @@
 {% block content %}
 <div class="container">
     <div class="row">
+      {% for blog in blogs %}
+        <div class="col-md-4 mb-3">
+            <div class="blog">
+                <a href="#">
+                    <h2>
+                        {{blog.title}}
+                    </h2>
+                </a>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="row">
         {% for quote in quotes %}
         <div class="col-md-4">
             <h3>{{quote.title}}</h3>

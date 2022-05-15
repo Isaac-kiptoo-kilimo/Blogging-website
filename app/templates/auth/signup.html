@@ -9,10 +9,14 @@
 <fieldset >
     <legend class="text-center text-white">Register Account</legend>
     <div class="form-group  mx-auto text-white">
-        {{form.username.label(class= "form-control-label")}}
-        {{form .username(class='form-control',placeholder='username')}} <br>
+        <div class="form-group">
+            {{form.username.label(class= "form-control-label")}}
+            {{form .username(class='form-control',placeholder='username')}} 
+        </div>
+        {{form.fullname.label(class= "form-control-label")}}
+        {{form.fullname(class='form-control',placeholder='fullname')}} <br>
         {{form.email.label(class= "form-control-label")}}
-        {{form.email(class='form-control',placeholder='email')}} <br>
+        {{form.email(class='form-control',placeholder='email')}}
         {{form.password.label(class= "form-control-label")}}
         {{form.password(class='form-control',placeholder='password')}} <br>
         {{form.confirm_password(class='form-control',placeholder='confirm password')}} <br>

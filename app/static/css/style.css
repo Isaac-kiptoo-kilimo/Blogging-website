@@ -6,3 +6,18 @@ body{
 .navbar{
     background-color: rgb(19,21,79);
 }
+
+.blog{
+    width: 100%;
+    background-color: #061d3f;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+.blog a{
+    color: white;
+    text-decoration: none;
+}
+.blog a:hover{
+    color: #da2240;
+}

@@ -28,21 +28,27 @@ def register():
     form = RegistrationForm()
     user_exist=User.query.filter_by(email=form.email.data).first() 
     if request.method=='POST':
+        print('form validate',form.validate_on_submit())
 
         if form.validate_on_submit() and user_exist is None: 
     
-            user = User(username=form.username.data, email=form.email.data,password=form.password.data)
+            user = User(username=form.username.data, fullname=form.fullname.data, email=form.email.data,password=form.password.data)
 
             print(form.username)
             db.session.add(user)
             db.session.commit()
             
             # mail_message("Welcome to Movie of the day","email/welcome_user",user.email,user=user)
-            flash('Yaaaay! Thanks for registering!')
+            flash('Yaaaay! Thanks for registering!',"success")
 
             return redirect(url_for('auth.login'))
-    
+
+        else:
+            print("an error occured")
+            flash("an error occurred","error")
+
     return render_template('auth/signup.html',title='signup',form=form)
+
 
 @auth.route('/logout')
 @login_required

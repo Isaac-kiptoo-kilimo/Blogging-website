@@ -21,7 +21,7 @@ class User(UserMixin,db.Model):
     username=db.Column(db.String(255),unique=True,nullable=False)
     fullname=db.Column(db.String(255),index=True,nullable=False)
     email=db.Column(db.String(255),unique=True,index=True,nullable=False)
-    bio=db.Column(db.String(255),nullable=False)
+    bio=db.Column(db.String(255),nullable=True)
     password_secure=db.Column(db.String(255),nullable=False)
     active = db.Column(db.Boolean(), default=True)
     admin = db.Column(db.Boolean(), default=False)
@@ -57,7 +57,6 @@ class Blog(db.Model):
     title=db.Column(db.String(255),nullable=False)
     author=db.Column(db.String(255),nullable=False)
     content = db.Column(db.Text, nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
@@ -80,14 +79,4 @@ class Comment(db.Model):
     def __repr__(self):
       return self.content
 
-class Category(db.Model):
-    __tablename__ = 'categories'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
-    blogs = db.relationship('Blog', backref='category', lazy=True)
-
-    def __repr__(self):
-        return self.name
