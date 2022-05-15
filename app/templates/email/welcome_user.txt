@@ -1,0 +1,5 @@
+Hello {{user.username}}
+Welcome to Blog application
+email=user['email']
+subject='We have posted a new blog post'
+content=f'Here is the title {title}'
