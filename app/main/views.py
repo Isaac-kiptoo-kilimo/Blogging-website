@@ -35,8 +35,9 @@ def make_blogs(blogs):
 def index():
     quotes = get_blogs()
     
-    blogs=Blog.query.all()
-    return render_template ("pages/index.html",quotes=quotes,blogs=blogs)
+    blogs=Blog.query.order_by(Blog.created_at.desc()).all()
+    
+    return render_template ("pages/index.html",blogs=blogs,quote1=quotes[0],quote2=quotes[2])
 
 @main.route('/blogs/add', methods=['GET','POST'])
 @login_required
@@ -50,6 +51,12 @@ def addblog():
     db.session.add(blog)
     db.session.commit()
     flash('blog created successfully',"success")
+    users=User.query.all()
+    for user in users:
+      email=user['email']
+      subject='We have posted a new blog post'
+      content=f'Here is the title {title}'
+      
     return redirect(url_for('main.index'))
   return render_template ('pages/blogs/addblog.html')
    
@@ -57,4 +64,8 @@ def addblog():
 @login_required
 def view_blog(blog_id):
   blog=Blog.query.get(int(blog_id))
-  return render_template('pages/blogs/view.html',blog=blog)
+  quotes = get_blogs()
+    
+  blogs=Blog.query.all()
+  return render_template('pages/blogs/view.html',blog=blog,quote1=quotes[0],quote2=quotes[2],blogs=blogs,quote3=quotes[3],quote4=quotes[4])
+

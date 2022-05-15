@@ -3,10 +3,23 @@
 {% block content %}
 <div class="container">
     <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="quote">
+                <p>
+                    <span class="quote-q">"</span>
+                    {{quote1.quote}}
+                </p>
+                <p>
+                    <small>
+                        {{quote1.author}}
+                    </small>
+                </p>
+            </div>
+        </div>
       {% for blog in blogs %}
         <div class="col-md-4 mb-3">
             <div class="blog">
-                <a href="#">
+                <a href="{{url_for('main.view_blog',blog_id=blog.id)}}">
                     <h2>
                         {{blog.title}}
                     </h2>
@@ -14,15 +27,19 @@
             </div>
         </div>
       {% endfor %}
-    </div>
-    <div class="row">
-        {% for quote in quotes %}
-        <div class="col-md-4">
-            <h3>{{quote.title}}</h3>
-            <p>{{quote.quote}}</p>
-            <p>Author:{{quote.author}}</p>
+      <div class="col-md-4 mb-3">
+        <div class="quote">
+            <p>
+                <span class="quote-q">"</span>
+                {{quote2.quote}}
+            </p>
+            <p>
+                <small>
+                    {{quote2.author}}
+                </small>
+            </p>
         </div>
-        {% endfor %}
+    </div>
     </div>
 </div>
 {% endblock %}

@@ -1,2 +1,77 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="quote">
+                <p>
+                    <span class="quote-q">"</span>
+                    {{quote2.quote}}
+                </p>
+                <p>
+                    <small>
+                        {{quote2.author}}
+                    </small>
+                </p>
+            </div>
+            <div class="py-5">
+                {{ blog.content | safe }}
+            </div>
+            <div class="quote">
+                <p>
+                    <span class="quote-q">"</span>
+                    {{quote1.quote}}
+                </p>
+                <p>
+                    <small>
+                        {{quote1.author}}
+                    </small>
+                </p>
+            </div>
+            <div class="comments">
+                comments
+            </div>
+            <div class="comment-form">
+                <form action=""></form>
+            </div>
+        </div>
+        <div class="col-md-4 ">
+           <div>
+            <div class="quote mb-4">
+                <p>
+                    <span class="quote-q">"</span>
+                    {{quote3.quote}}
+                </p>
+                <p>
+                    <small>
+                        {{quote3.author}}
+                    </small>
+                </p>
+            </div>
+            {% for blog in blogs %}
+            <div class="mb-3">
+                <div class="blog">
+                    <a href="{{url_for('main.view_blog',blog_id=blog.id)}}">
+                        <h2>
+                            {{blog.title}}
+                        </h2>
+                    </a>
+                </div>
+            </div>
+          {% endfor %}
+          <div class="quote">
+            <p>
+                <span class="quote-q">"</span>
+                {{quote4.quote}}
+            </p>
+            <p>
+                <small>
+                    {{quote4.author}}
+                </small>
+            </p>
+        </div>
+           </div> 
+        </div>
+    </div>
+</div>
+{% endblock %}

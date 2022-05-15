@@ -21,3 +21,14 @@ body{
 .blog a:hover{
     color: #da2240;
 }
+.quote{
+    color: #061d3f;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 30px;
+
+}
+.quote-q{
+    font-size: 48px;
+    margin: 6px 10px 0 0;
+}
