@@ -53,8 +53,10 @@ def addblog():
     flash('blog created successfully',"success")
     users=User.query.all()
     for user in users:
-      mail_message("Welcome to pitches app","email/welcome_user",user.email,user=user)
-    return redirect(url_for('main.index'))
+
+      mail_message("Welcome to blogs app","email/welcome_user",user.email,user=user)
+      print("Email message,..,.,",mail_message)
+      return redirect(url_for('main.index'))
   return render_template ('pages/blogs/addblog.html')
    
 @main.route('/blogs/view/<int:blog_id>', methods=['GET','POST'])

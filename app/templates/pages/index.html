@@ -16,6 +16,7 @@
                 </p>
             </div>
         </div>
+       
       {% for blog in blogs %}
         <div class="col-md-4 mb-3">
             <div class="blog">
@@ -26,7 +27,21 @@
                    
                 </a>
             </div>
+            <div class="action">
+                <a href="{{ url_for('main.view_blog', blog_id=blog.id) }}">
+                  <button class="btn btn-primary outline-none border-none shadow-none">
+                    <span>
+                      <i class="fa-solid fa-comment"></i>
+                    </span>
+                    <span class="ms-3">
+                        comment
+                      {{blog.comments}}
+                    </span>
+                  </button>
+                </a>
+              </div>
         </div>
+       
       {% endfor %}
       <div class="col-md-4 mb-3">
         <div class="quote">

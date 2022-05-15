@@ -30,6 +30,19 @@
             </div>
             <div class="comments">
                 comments
+                <div class="action">
+                    <a href="{{ url_for('main.view_blog', blog_id=blog.id) }}">
+                      <button class="btn btn-primary outline-none border-none shadow-none">
+                        <span>
+                          <i class="fa-solid fa-comment"></i>
+                        </span>
+                        <span class="ms-3">
+                            comment
+                          {{blog.comments}}
+                        </span>
+                      </button>
+                    </a>
+                  </div>
             </div>
             <div class="comment-form">
                 <form action=""></form>
