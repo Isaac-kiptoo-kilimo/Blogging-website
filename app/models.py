@@ -45,6 +45,12 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.password_secure,password)
 
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
+
+  
+
 class Blog(db.Model):
     __tablename__='blogs'
     id=db.Column(db.Integer,primary_key=True,nullable=False)
