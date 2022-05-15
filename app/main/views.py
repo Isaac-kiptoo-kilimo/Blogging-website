@@ -11,25 +11,25 @@ from ..email import mail_message
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# def make_blogs(blogs):
+def make_blogs(blogs):
 
-#   new_blogs = []
-#   for blog in blogs:
-#     user = User.query.filter_by(id=blog.user_id).first()
+  new_blogs = []
+  for blog in blogs:
+    user = User.query.filter_by(id=blog.user_id).first()
    
-#     comments = Comment.query.filter_by(blog_id=blog.id).all()
-#     new_blog.append({
-#       'id': blog.id,
-#       'title': blog.title,
-#       'author': blog.author,
-#       'content': blog.content,
+    comments = Comment.query.filter_by(blog_id=blog.id).all()
+    addblog.append({
+      'id': blog.id,
+      'title': blog.title,
+      'author': blog.author,
+      'content': blog.content,
       
-#       'user': user,
-#       'upvotes': blog.upvotes,
-#       'downvotes': blog.downvotes,
-#       'comments': len(comments)
-#     })
-#   return new_blogs
+      'user': user,
+      'upvotes': blog.upvotes,
+      'downvotes': blog.downvotes,
+      'comments': len(comments)
+    })
+  return new_blogs
 
 @main.route('/')
 def index():
@@ -65,7 +65,9 @@ def view_blog(blog_id):
     
   blogs=Blog.query.all()
   return render_template('pages/blogs/view.html',blog=blog,quote1=quotes[0],quote2=quotes[2],blogs=blogs,quote3=quotes[3],quote4=quotes[4])
-@main.route('/')
+
+
+@main.route('/blogs/view/<int:blog_id>', methods=['GET','POST'])
 def add_comment(blog_id):
   blog = Blog.query.filter_by(id=blog_id).first()
   if request.method == 'POST':
