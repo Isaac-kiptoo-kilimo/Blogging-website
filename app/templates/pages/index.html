@@ -1,61 +1,40 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <div class="quote">
-                <p>
-                    <span class="quote-q">"</span>
-                    {{quote1.quote}}
-                </p>
-                <p>
-                    <small>
-                        {{quote1.author}}
-                    </small>
-                </p>
-            </div>
-        </div>
-       
-      {% for blog in blogs %}
-        <div class="col-md-4 mb-3">
-            <div class="blog">
-                <a href="{{url_for('main.view_blog',blog_id=blog.id)}}">
-                    <h2>
-                        {{blog.title}}
-                    </h2>
-                   
-                </a>
-                <div class="action">
-                    <a href="{{ url_for('main.comment_view',blog_id=blog.id) }}">
-                      <button class="btn btn-primary outline-none border-none shadow-none">
-                        <span>
-                          <i class="fa-solid fa-comment"></i>
-                        </span>
-                        <span class="ms-3">
-                            add comment
-                          {{blog.comments}}
-                        </span>
-                      </button>
-                    </a>
-                  </div>
-            </div>
-        </div>
-       
-      {% endfor %}
-      <div class="col-md-4 mb-3">
-        <div class="quote">
-            <p>
-                <span class="quote-q">"</span>
-                {{quote2.quote}}
-            </p>
-            <p>
-                <small>
-                    {{quote2.author}}
-                </small>
-            </p>
-        </div>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <div class="quote">
+        <p>
+          <span class="quote-q">"</span>
+          {{quote1.quote}}
+        </p>
+        <p>
+          <small> {{quote1.author}} </small>
+        </p>
+      </div>
     </div>
+
+    {% for blog in blogs %}
+    <div class="col-md-4 mb-3">
+      <div class="blog">
+        <a href="{{url_for('main.view_blog',blog_id=blog.id)}}">
+          <h2>{{blog.title}}</h2>
+        </a>
+        
+      </div>
     </div>
+
+    {% endfor %}
+    <div class="col-md-4 mb-3">
+      <div class="quote">
+        <p>
+          <span class="quote-q">"</span>
+          {{quote2.quote}}
+        </p>
+        <p>
+          <small> {{quote2.author}} </small>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

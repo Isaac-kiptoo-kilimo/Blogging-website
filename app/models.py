@@ -58,6 +58,7 @@ class Blog(db.Model):
     author=db.Column(db.String(255),nullable=False)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    comments = db.relationship('Comment', backref='blog', lazy=True)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
     downvotes = db.Column(db.Integer, default=0)

@@ -60,7 +60,6 @@ def addblog():
   return render_template ('pages/blogs/addblog.html')
    
 @main.route('/blogs/view/<int:blog_id>', methods=['GET','POST'])
-@login_required
 def view_blog(blog_id):
   blog=Blog.query.get(int(blog_id))
   quotes = get_blogs()
@@ -75,9 +74,9 @@ def view_blog(blog_id):
         'user': user,
         'created_at': comment.created_at
       })
-  user = User.query.filter_by(id=comment.user_id).first()
+  
   blogs=Blog.query.all()
-  return render_template('pages/blogs/view.html',comments=new_comments,user=user,blog=blog,quote1=quotes[0],quote2=quotes[2],blogs=blogs,quote3=quotes[3],quote4=quotes[4])
+  return render_template('pages/blogs/view.html',comments=new_comments,blog=blog,quote1=quotes[0],quote2=quotes[2],blogs=blogs,quote3=quotes[3],quote4=quotes[4])
 
 
 @main.route('/comments/add/<string:blog_id>',methods=['GET','POST'])
@@ -85,6 +84,7 @@ def comment_view(blog_id):
   blog = Blog.query.filter_by(id=blog_id).first()
   if request.method == 'POST':
     content = request.form['comment']
+    
     if blog:
       comment = Comment(blog_id=blog.id, user_id=current_user.id, content=content)
       db.session.add(comment)
@@ -96,5 +96,5 @@ def comment_view(blog_id):
       flash('blog not found', 'warning')
       return redirect(url_for('main.index'))
   
-  return render_template('pages/blogs/addcomment.html',blog=blog)
+  
 

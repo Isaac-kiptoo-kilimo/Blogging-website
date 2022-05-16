@@ -1,115 +1,102 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="quote">
-                <p>
-                    <span class="quote-q">"</span>
-                    {{quote2.quote}}
-                </p>
-                <p>
-                    <small>
-                        {{quote2.author}}
-                    </small>
-                </p>
-            </div>
-            <div class="py-5">
-                {{ blog.content | safe }}
-            </div>
-            <div class="quote">
-                <p>
-                    <span class="quote-q">"</span>
-                    {{quote1.quote}}
-                </p>
-                <p>
-                    <small>
-                        {{quote1.author}}
-                    </small>
-                </p>
-            </div>
-            <div class="comments my-4">
-
-                {% for comment in comments %}
-                <div class="comment card custom-card p-2 mb-4">
-                  <div class="comment-header d-flex align-items-center">
-                    <!-- <div class="comment-header-left me-2">
-                      <img src="https://via.placeholder.com/50" alt="">
-                    </div> -->
-                    <div class="comment-header-right">
-                      <h4>{{comment.user.fullname}}</h4>
-                      <p>
-                        <span>Posted on: </span>
-                        <span>{{comment.created_at.date()}}</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="comment-body">
-                    <p>
-                      {{comment.content}}
-                    </p>
-                  </div>
-                </div>
-                {% endfor %}
-            
+  <div class="row">
+    <div class="col-md-8">
+      <div class="quote">
+        <p>
+          <span class="quote-q">"</span>
+          {{quote2.quote}}
+        </p>
+        <p>
+          <small> {{quote2.author}} </small>
+        </p>
+      </div>
+      <div class="py-5 quote my-3">{{ blog.content | safe }}</div>
+      <div class="quote">
+        <p>
+          <span class="quote-q">"</span>
+          {{quote1.quote}}
+        </p>
+        <p>
+          <small> {{quote1.author}} </small>
+        </p>
+      </div>
+      <div>
+          <h3 class="my-3">
+              COMMENTS
+          </h3>
+        {% for comment in comments %}
+        <div class="my-3 quote">
+          <h5 class="text-capitalize">{{comment.user.username}}</h5>
+          <div>
+            <p>{{comment.content}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% if current_user.is_authenticated  %}
+      <div class="my-4">
+        <div class="form">
+          <div class="card custom-card p-2 commentform">
+            <h3 class="text-center">Leave a comment</h3>
+            <form
+              action="{{ url_for('main.comment_view',blog_id=blog.id) }}"
+              method="post"
+              class="" >
+           
+              <div class="form-group">
+                <label for="">Comment</label>
+                <textarea
+                  id=""
+                  rows="5"
+                  class="form-control input-lg mt-2 outline-none bg-none shadow-none custom-input commentform"
+                  name="comment"
+                ></textarea>
               </div>
-            <div class="comments">
-                comments
-                <div class="action">
-                    <a href="{{ url_for('main.view_blog', blog_id=blog.id) }}">
-                      <button class="btn btn-primary outline-none border-none shadow-none">
-                        <span>
-                          <i class="fa-solid fa-comment"></i>
-                        </span>
-                        <span class="ms-3">
-                            comment
-                         
-                        </span>
-                      </button>
-                    </a>
-                  </div>
-            </div>
-            <div class="comment-form">
-                <form action=""></form>
-            </div>
+              <div class="form-group mt-2">
+                <button class="btn btn-primary custom-btn">Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="col-md-4 ">
-           <div>
-            <div class="quote mb-4">
-                <p>
-                    <span class="quote-q">"</span>
-                    {{quote3.quote}}
-                </p>
-                <p>
-                    <small>
-                        {{quote3.author}}
-                    </small>
-                </p>
-            </div>
-            {% for blog in blogs %}
-            <div class="mb-3">
-                <div class="blog">
-                    <a href="{{url_for('main.view_blog',blog_id=blog.id)}}">
-                        <h2>
-                            {{blog.title}}
-                        </h2>
-                    </a>
-                </div>
-            </div>
-          {% endfor %}
-          <div class="quote">
-            <p>
-                <span class="quote-q">"</span>
-                {{quote4.quote}}
-            </p>
-            <p>
-                <small>
-                    {{quote4.author}}
-                </small>
-            </p>
-        </div>
-           </div> 
-        </div>
+      </div>
+      {% else %}
+      <div class="alert alert-info p-3 mt-3">
+        <p class="m-0 p-0">You mush be logged in to comment.</p>
+      </div>
+      {% endif %}
     </div>
+    <div class="col-md-4">
+      <div>
+        <div class="quote mb-4">
+          <p>
+            <span class="quote-q">"</span>
+            {{quote3.quote}}
+          </p>
+          <p>
+            <small> {{quote3.author}} </small>
+          </p>
+        </div>
+        {% for blog in blogs %}
+        <div class="mb-3">
+          <div class="blog">
+            <a href="{{url_for('main.view_blog',blog_id=blog.id)}}">
+              <h2>{{blog.title}}</h2>
+            </a>          
+          </div>
+        </div>
+        {% endfor %}
+        <div class="quote">
+          <p>
+            <span class="quote-q">"</span>
+            {{quote4.quote}}
+          </p>
+          <p>
+            <small> {{quote4.author}} </small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
