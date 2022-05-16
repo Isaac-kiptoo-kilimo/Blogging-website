@@ -1,15 +1,32 @@
+:root{
+    --color: white;
+    --select-bg: #04042c9a;
+}
+*::selection{
+    background-color: var(--select-bg);
+    color: var(--color)
+}
 body{
-    background: linear-gradient(rgb(11, 10, 73, 0.9), rgba(11, 10, 73, 0.9)), url(https://cdn.pixabay.com/photo/2014/12/21/07/49/fireworks-574739_960_720.jpg);
+    background: linear-gradient(to right, #120b24c9, #04042cc9), url(../images/bg2.webp);
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: rgb(233, 224, 218);
 }
 .navbar{
-    background-color: rgb(19,21,79);
+    background-color: var(--select-bg);
+    margin-bottom: 20px;
 }
 
 .blog{
     width: 100%;
-    background-color: #061d3f;
+    /* background: linear-gradient(to right, #120b24d2, #04042ce8), url(https://cdn.pixabay.com/photo/2014/12/21/07/49/fireworks-574739_960_720.jpg); */
+    /* background-color: #061d3f; */
+    background: var(--select-bg);
+    background: linear-gradient(to right, #120b24d2, #04042ce8), url(https://cdn.pixabay.com/photo/2014/12/21/07/49/fireworks-574739_960_720.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
     padding: 20px 30px;
     border-radius: 10px;
@@ -22,8 +39,8 @@ body{
     color: #da2240;
 }
 .quote{
-    color: #061d3f;
-    background-color: white;
+    /* color: #061d3f; */
+    background: linear-gradient(to right, #120b24d2, #04042ce8), url(https://cdn.pixabay.com/photo/2014/12/21/07/49/fireworks-574739_960_720.jpg);
     border-radius: 10px;
     padding: 20px 30px;
 

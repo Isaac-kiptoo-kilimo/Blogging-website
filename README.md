@@ -1,4 +1,4 @@
-## Blogs Application
+# Blogs Application
 
 ## Description
 This is a blog website made using flask for the front-end and  backend
