@@ -71,10 +71,17 @@ npm run test:e2e
 Customize configuration
 See Configuration Reference.
 
-Contact Information
-For any further inquiries or contributions or comments, reach me at Isaac Kiptoo
+## License -Copyright 
 
-License
 MIT License
+
+Copyright © license 2022 ,Isaac kiptoo kilimo, student Moringa school.
+
+## Authors Info/contacts
+
+Github Profile - [Isaac kiptoo kilimo](https://github.com/Isaac-kiptoo-kilimo)
+
+Email Address-[Isaac kiptoo kilimo] (isaac.kiptoo.kilimo@student.moringaschool.com)
+
 
 Copyright (c) 2022
