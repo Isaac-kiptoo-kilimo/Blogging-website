@@ -1,4 +1,4 @@
-from importlib.resources import contents
+
 from flask import render_template,request,redirect,url_for, flash
 from ..requests import get_blogs
 from . import main
@@ -64,27 +64,22 @@ def addblog():
 def view_blog(blog_id):
   blog=Blog.query.get(int(blog_id))
   quotes = get_blogs()
-    
+  if blog:
+    comments = Comment.query.filter_by(blog_id=blog.id).all()
+    new_comments = []
+    for comment in comments:
+      user = User.query.filter_by(id=comment.user_id).first()
+      new_comments.append({
+        'id': comment.id,
+        'content': comment.content,
+        'user': user,
+        'created_at': comment.created_at
+      })
+  user = User.query.filter_by(id=comment.user_id).first()
   blogs=Blog.query.all()
-  return render_template('pages/blogs/view.html',blog=blog,quote1=quotes[0],quote2=quotes[2],blogs=blogs,quote3=quotes[3],quote4=quotes[4])
+  return render_template('pages/blogs/view.html',comments=new_comments,user=user,blog=blog,quote1=quotes[0],quote2=quotes[2],blogs=blogs,quote3=quotes[3],quote4=quotes[4])
 
 
-# @main.route('/comments/blogs/add/<int:blog_id>', methods=['GET','POST'])
-# def add_comment(blog_id):
-#   blog = Blog.query.filter_by(id=blog_id).first()
-#   if request.method == 'POST':
-#     content = request.form['comment']
-#     if blog:
-#       comment = Comment(blog_id=blog.id, user_id=current_user.id, content=content)
-#       db.session.add(comment)
-#       db.session.commit()
-#       flash('Comment added', 'success')
-#       return redirect(url_for('main.view_blog', blog_id=blog.id))
-#     else:
-#       flash('blog not found', 'warning')
-#       return redirect(url_for('main.index'))
-#   return render_template ('pages/blogs/addcomment.html',comment=comment)
-#   # return redirect(url_for('main.add_comment', blog_id=blog.id))
 @main.route('/comments/add/<string:blog_id>',methods=['GET','POST'])
 def comment_view(blog_id):
   blog = Blog.query.filter_by(id=blog_id).first()
@@ -94,11 +89,12 @@ def comment_view(blog_id):
       comment = Comment(blog_id=blog.id, user_id=current_user.id, content=content)
       db.session.add(comment)
       db.session.commit()
-      blog_id=blog.id
+      
       flash('Comment added', 'success')
-      return redirect(url_for('main.view_blog', blog=blog))
+      return redirect(url_for('main.view_blog', blog_id=blog_id))
     else:
       flash('blog not found', 'warning')
       return redirect(url_for('main.index'))
   
   return render_template('pages/blogs/addcomment.html',blog=blog)
+

@@ -28,6 +28,31 @@
                     </small>
                 </p>
             </div>
+            <div class="comments my-4">
+
+                {% for comment in comments %}
+                <div class="comment card custom-card p-2 mb-4">
+                  <div class="comment-header d-flex align-items-center">
+                    <!-- <div class="comment-header-left me-2">
+                      <img src="https://via.placeholder.com/50" alt="">
+                    </div> -->
+                    <div class="comment-header-right">
+                      <h4>{{comment.user.fullname}}</h4>
+                      <p>
+                        <span>Posted on: </span>
+                        <span>{{comment.created_at.date()}}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="comment-body">
+                    <p>
+                      {{comment.content}}
+                    </p>
+                  </div>
+                </div>
+                {% endfor %}
+            
+              </div>
             <div class="comments">
                 comments
                 <div class="action">
@@ -38,7 +63,7 @@
                         </span>
                         <span class="ms-3">
                             comment
-                          {{blog.comments}}
+                         
                         </span>
                       </button>
                     </a>
