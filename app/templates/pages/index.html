@@ -27,13 +27,13 @@
                    
                 </a>
                 <div class="action">
-                    <a href="{{ url_for('main.view_blog', blog_id=blog.id) }}">
+                    <a href="{{ url_for('main.comment_view',blog_id=blog.id) }}">
                       <button class="btn btn-primary outline-none border-none shadow-none">
                         <span>
                           <i class="fa-solid fa-comment"></i>
                         </span>
                         <span class="ms-3">
-                            comment
+                            add comment
                           {{blog.comments}}
                         </span>
                       </button>

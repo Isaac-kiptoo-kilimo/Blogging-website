@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container comment">
+    <div class="form ">
+        <div class="card custom-card p-2 commentform">
+          <h3 class="text-center">Leave a comment</h3>
+          <form action="{{ url_for('main.comment_view',blog_id=blog.id) }}" method="post" class="">
+            <div class="form-group">
+              <label for="">Comment</label>
+              <textarea id="" rows="5" class="form-control input-lg mt-2 outline-none bg-none shadow-none custom-input commentform"
+                name="comment"></textarea>
+            </div>
+            <div class="form-group mt-2">
+              <button class="btn btn-primary custom-btn">Submit</button>
+            </div>
+          </form>
+</div>
+{% endblock %}
