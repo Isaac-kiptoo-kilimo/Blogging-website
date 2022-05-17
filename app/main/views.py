@@ -1,5 +1,6 @@
 
 from flask import render_template,request,redirect,url_for, flash
+from sqlalchemy import delete
 from ..requests import get_blogs
 from . import main
 from .. import db, login_manager
@@ -54,11 +55,27 @@ def addblog():
     users=User.query.all()
     for user in users:
 
-      mail_message("Welcome to blogs app","email/welcome_user",user.email,user=user)
-      print("Email message,..,.,",mail_message)
+      # mail_message("Welcome to blogs app","email/welcome_user",user.email,user=user)
+      # print("Email message,..,.,",mail_message)
       return redirect(url_for('main.index'))
   return render_template ('pages/blogs/addblog.html')
-   
+
+@main.route('/blogs/delete/<int:blog_id>')
+def delete_blog(blog_id):
+  blog_deleted=Blog.query.get(int(blog_id))
+  blog_deleted.delete()
+  return render_template('pages/index.html',blog_id=blog_id)
+  # try:
+  #   db.session.delete(blog_deleted)
+  #   db.session.commit()
+  #   flash('deleted successfully ')
+  #   blogs=Blog.query.all()
+  #   return render_template('pages/index.html',blogs=blogs)
+  # except:
+  #   flash('whoops!there was an error')
+  #   blogs=Blog.query.all()
+  #   return render_template('pages/blogs/view.html',blogs=blogs)
+
 @main.route('/blogs/view/<int:blog_id>', methods=['GET','POST'])
 def view_blog(blog_id):
   blog=Blog.query.get(int(blog_id))

@@ -11,20 +11,20 @@
           <small> {{quote2.author}} </small>
         </p>
       </div>
-      <div class="py-5 quote my-3">{{ blog.content | safe }}</div>
-      <div class="quote">
-        <p>
-          <span class="quote-q">"</span>
-          {{quote1.quote}}
-        </p>
-        <p>
-          <small> {{quote1.author}} </small>
-        </p>
+      <div class="py-5 quote my-3">
+        <div>
+          <h4>{{blog.title}}</h4>
+          {{ blog.content | safe }}
+        </div>
+        {% if current_user.is_authenticated %}
+        <a href=""></a>
+        <button class="btn btn-outline-info mx-4">Update</button>
+        <a href="{{url_for('main.delete_blog',blog_id=blog.id)}}" class="btn btn-outline-danger">Delete</a>
+        
+        {% endif %}
       </div>
       <div>
-          <h3 class="my-3">
-              COMMENTS
-          </h3>
+        <h3 class="my-3">COMMENTS</h3>
         {% for comment in comments %}
         <div class="my-3 quote">
           <h5 class="text-capitalize">{{comment.user.username}}</h5>
@@ -34,7 +34,7 @@
         </div>
         {% endfor %}
       </div>
-      {% if current_user.is_authenticated  %}
+      {% if current_user.is_authenticated %}
       <div class="my-4">
         <div class="form">
           <div class="card custom-card p-2 commentform">
@@ -42,8 +42,7 @@
             <form
               action="{{ url_for('main.comment_view',blog_id=blog.id) }}"
               method="post"
-              class="" >
-           
+              class="">
               <div class="form-group">
                 <label for="">Comment</label>
                 <textarea
@@ -62,10 +61,20 @@
       </div>
       {% else %}
       <div class="alert alert-info p-3 mt-3">
-        <p class="m-0 p-0">You mush be logged in to comment.</p>
+        <p class="m-0 p-0">You must be logged in to comment.</p>
       </div>
       {% endif %}
+    
+    <div class="quote">
+      <p>
+        <span class="quote-q">"</span>
+        {{quote1.quote}}
+      </p>
+      <p>
+        <small> {{quote1.author}} </small>
+      </p>
     </div>
+  </div>
     <div class="col-md-4">
       <div>
         <div class="quote mb-4">
@@ -82,7 +91,7 @@
           <div class="blog">
             <a href="{{url_for('main.view_blog',blog_id=blog.id)}}">
               <h2>{{blog.title}}</h2>
-            </a>          
+            </a>
           </div>
         </div>
         {% endfor %}
